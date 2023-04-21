@@ -2,7 +2,8 @@ const pwd = require('./pwd.js');
 const ls = require('./ls.js');
 const cat = require('./cat.js');
 const date = require('./date.js');
-
+const echo = require('./echo.js');
+const head = require ('./head.js');
 
 //Output a prompt
 process.stdout.write('prompt > ');
@@ -19,6 +20,10 @@ process.stdin.on('data', (data) => {
         cat(cmd.substring(4), done);
     } else if (cmd === "date") {
         date(done);
+    } else if (cmd.substring(0,5) === "echo ") {
+        echo(cmd.substring(5), done)
+    } else if (cmd.substring(0, 5) === "head ") {
+        head(cmd.substring(5), done);
     } else {
         done('You typed: ' + cmd);
     }
